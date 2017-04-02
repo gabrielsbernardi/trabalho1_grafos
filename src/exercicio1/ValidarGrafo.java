@@ -1,4 +1,4 @@
-package grafos;
+package exercicio1;
 
 import java.util.ArrayList;
 
