@@ -12,6 +12,7 @@ import java.util.Scanner;
 /**
  *
  * @author Gabriel Bernardi
+ * 
  */
 public class Main {
     private static Scanner teclado = new Scanner(System.in);
@@ -50,6 +51,7 @@ public class Main {
             verticesDisponiveis.append(vertice).append(" ");
         }
         System.out.println(verticesDisponiveis.toString());
+        System.out.println("Padrão de exemplo de inserção de ligações: V0 V1\n");
         
         System.out.println("Informe as ligações dos vértices.");
         for (int i = 0; i < qtdArestas; i++) {
@@ -70,8 +72,10 @@ public class Main {
             }
             System.out.println();
         }
+        
+        buscaMenorCaminho();
     }
-
+    
     private static boolean validarAresta(String ligacao) {
         String[] v = ligacao.split(" ");
         if (v.length != 2) {
@@ -92,5 +96,14 @@ public class Main {
         int segundoVerticeInformado = Integer.parseInt(v[1].replace("V", ""));
         
         matrizAdjacencia[primeroVerticeInformado][segundoVerticeInformado] += 1;
+    }
+
+    private static void buscaMenorCaminho() {
+        
+        for(int i = 0; i < matrizAdjacencia.length; i++){
+            if(matrizAdjacencia[0][i] > 0){
+                
+            }
+        }
     }
 }
