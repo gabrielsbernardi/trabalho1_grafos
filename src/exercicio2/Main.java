@@ -6,7 +6,9 @@
 package exercicio2;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Scanner;
 
 /**
@@ -17,6 +19,8 @@ import java.util.Scanner;
 public class Main {
     private static Scanner teclado = new Scanner(System.in);
     private static List<String> vertices;
+    private static Queue<Integer> listaAdjacentes = new LinkedList<>();
+    private static List<Integer> verticesLidos = new ArrayList<>();
     private static int qtdVertices;
     private static int qtdArestas;
     private static int[][] matrizAdjacencia;
@@ -46,11 +50,13 @@ public class Main {
 
     private static void informarArestas() {
         StringBuilder verticesDisponiveis = new StringBuilder();
+        int count = 0;
         verticesDisponiveis.append("Vértices disponíveis: ");
         for (String vertice : vertices) {
             verticesDisponiveis.append(vertice).append(" ");
+            count++;
         }
-        System.out.println(verticesDisponiveis.toString());
+        System.out.println(verticesDisponiveis.toString() + "\nVértice de ENTRADA = V0\nVértice de SAÍDA = V" + (count-1));
         System.out.println("Padrão de exemplo de inserção de ligações: V0 V1\n");
         
         System.out.println("Informe as ligações dos vértices.");
@@ -73,7 +79,7 @@ public class Main {
             System.out.println();
         }
         
-        buscaMenorCaminho();
+        System.out.println(buscaMenorCaminho(0, 0));
     }
     
     private static boolean validarAresta(String ligacao) {
@@ -95,15 +101,29 @@ public class Main {
         int primeroVerticeInformado = Integer.parseInt(v[0].replace("V", ""));
         int segundoVerticeInformado = Integer.parseInt(v[1].replace("V", ""));
         
-        matrizAdjacencia[primeroVerticeInformado][segundoVerticeInformado] += 1;
+        matrizAdjacencia[primeroVerticeInformado][segundoVerticeInformado] = 1;
+        matrizAdjacencia[segundoVerticeInformado][primeroVerticeInformado] = 1;
     }
 
-    private static void buscaMenorCaminho() {
-        
+    private static int buscaMenorCaminho(int vertice, int distancia) {
+        if(!verticesLidos.contains(vertice)){
+            verticesLidos.add(vertice);
+        }
         for(int i = 0; i < matrizAdjacencia.length; i++){
-            if(matrizAdjacencia[0][i] > 0){
-                
+            if(matrizAdjacencia[vertice][i] > 0){
+                if(!verticesLidos.contains(i)){
+                    listaAdjacentes.add(i);
+                }
             }
         }
+        
+        if (!listaAdjacentes.isEmpty()){
+            int pro = listaAdjacentes.poll();
+            if(!verticesLidos.contains(pro)){
+                distancia++;
+                return distancia = buscaMenorCaminho(pro, distancia);    
+            }
+        }
+        return distancia;
     }
 }
