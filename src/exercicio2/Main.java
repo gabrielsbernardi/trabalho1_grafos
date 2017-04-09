@@ -9,15 +9,14 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Gabriel Bernardi
+ * @author Gabriel da Silva Bernardi e Matheus Waltrich da Silva 
  * 
  */
 public class Main {
-    private static Scanner teclado = new Scanner(System.in);
     private static List<String> vertices;
     private static Queue<Integer> listaAdjacentes = new LinkedList<>();
     private static List<Integer> verticesLidos = new ArrayList<>();
@@ -31,12 +30,8 @@ public class Main {
     }
 
     private static void informarQtdVerticesArestas() {
-        System.out.print("Informe o número VÉRTICES: ");
-        qtdVertices = teclado.nextInt();
-        System.out.print("Informe o número ARESTAS: ");
-        qtdArestas = teclado.nextInt();
-        System.out.println();
-        
+        qtdVertices = Integer.parseInt(JOptionPane.showInputDialog("Informe o número VÉRTICES:"));
+        qtdArestas = Integer.parseInt(JOptionPane.showInputDialog("Informe o número ARESTAS:"));
         matrizAdjacencia = new int[qtdVertices][qtdVertices];
         montarConjuntoVertices();
     }
@@ -63,8 +58,7 @@ public class Main {
         for (int i = 0; i < qtdArestas; i++) {
             boolean arestaValida = false;
             while (!arestaValida) {
-                System.out.print("Ligação " + i + ": ");
-                String verticeInformados = teclado.nextLine();
+                String verticeInformados = JOptionPane.showInputDialog("Ligação " + i + ": ");
                 arestaValida = validarAresta(verticeInformados);
                 if (arestaValida) {
                     popularMatrizAdjacencia(verticeInformados);

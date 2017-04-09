@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author Gabriel Bernardi e Matheus Waltrich
+ * @author Gabriel da Silva Bernardi e Matheus Waltrich da Silva
  * 
  */
 public class ValidarGrafo {
