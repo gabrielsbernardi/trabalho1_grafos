@@ -61,12 +61,12 @@ public class Main {
             }
         }
         
-        for (int i = 0; i < matrizAdjacencia.length; i++) {
-            for (int j = 0; j < matrizAdjacencia[i].length; j++) {
-                System.out.print(matrizAdjacencia[i][j] + " ");
-            }
-            System.out.println();
-        }
+//        for (int i = 0; i < matrizAdjacencia.length; i++) {
+//            for (int j = 0; j < matrizAdjacencia[i].length; j++) {
+//                System.out.print(matrizAdjacencia[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
         
         JOptionPane.showMessageDialog(null, "Distância Mínima: " + buscaMenorCaminho(0, 0));
     }
