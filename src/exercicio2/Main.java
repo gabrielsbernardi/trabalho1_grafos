@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package exercicio2;
 
 import java.util.ArrayList;
@@ -53,8 +48,8 @@ public class Main {
         }
         System.out.println(verticesDisponiveis.toString() + "\nVértice de ENTRADA = V0\nVértice de SAÍDA = V" + (count-1));
         System.out.println("Padrão de exemplo de inserção de ligações: V0 V1\n");
-        
-        System.out.println("Informe as ligações dos vértices.");
+        JOptionPane.showMessageDialog(null, "No CONSOLE consta qual é o vértice de entrada, de saída, "
+                + "os vértices disponíveis e o padrão de exemplo de inserção de ligações.");
         for (int i = 0; i < qtdArestas; i++) {
             boolean arestaValida = false;
             while (!arestaValida) {
@@ -73,17 +68,13 @@ public class Main {
             System.out.println();
         }
         
-        System.out.println(buscaMenorCaminho(0, 0));
+        JOptionPane.showMessageDialog(null, "Distância Mínima: " + buscaMenorCaminho(0, 0));
     }
     
     private static boolean validarAresta(String ligacao) {
         String[] v = ligacao.split(" ");
-        if (v.length != 2) {
-            System.out.println("Conjunto de arestas inválidas!");
-            return false;
-        }
-        if (!vertices.contains(v[0]) || !vertices.contains(v[1])){
-            System.out.println("Conjunto de arestas inválidas!");
+        if (v.length != 2 || !vertices.contains(v[0]) || !vertices.contains(v[1])){
+            JOptionPane.showMessageDialog(null, "Conjunto de arestas inválidas!");
             return false;
         }
         return true;
@@ -108,11 +99,18 @@ public class Main {
                 if(!verticesLidos.contains(i)){
                     listaAdjacentes.add(i);
                 }
+                if(i == matrizAdjacencia.length - 1){
+                    return distancia;
+                }
             }
         }
         
         if (!listaAdjacentes.isEmpty()){
             int pro = listaAdjacentes.poll();
+            if(pro == matrizAdjacencia.length - 1){
+                distancia++;
+                return distancia;
+            }
             if(!verticesLidos.contains(pro)){
                 distancia++;
                 return distancia = buscaMenorCaminho(pro, distancia);    
